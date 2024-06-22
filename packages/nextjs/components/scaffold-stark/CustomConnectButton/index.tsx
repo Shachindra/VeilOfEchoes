@@ -17,7 +17,7 @@ import ConnectModal from "./ConnectModal";
  * Custom Connect Button (watch balance + custom design)
  */
 export const CustomConnectButton = () => {
-  useAutoConnect();
+  //useAutoConnect();
   const networkColor = useNetworkColor();
   const { targetNetwork } = useTargetNetwork();
   const { address, status, chainId, ...props } = useAccount();

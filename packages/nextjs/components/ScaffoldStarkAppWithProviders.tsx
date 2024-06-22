@@ -18,15 +18,16 @@ import { appChains } from "~~/services/web3/connectors";
 import { BurnerConnector } from "~~/services/web3/stark-burner/BurnerConnector";
 import provider from "~~/services/web3/provider";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-stark/useNativeCurrencyPrice";
+import {FONT} from "../fonts/fonts"
 
 const ScaffoldStarkApp = ({ children }: { children: React.ReactNode }) => {
   useNativeCurrencyPrice();
 
   return (
     <>
-      <div className="flex flex-col min-h-screen">
+      <div className={"flex flex-col min-h-screen " + FONT.className}>
         <Header />
-        <main className="relative flex flex-col flex-1">{children}</main>
+        <main className="relative flex flex-col flex-1 justify-center">{children}</main>
         <Footer />
       </div>
       <Toaster />

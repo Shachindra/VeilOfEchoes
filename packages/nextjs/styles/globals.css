@@ -1,32 +1,42 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root,
-[data-theme] {
-  background: oklch(var(--b2));
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 64, 147;
+  --background-end-rgb: 17, 64, 147;
 }
 
 body {
-  min-height: 100vh;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+  ) rgb(var(--background-start-rgb));
 }
 
-h1,
-h2,
-h3,
-h4 {
-  margin-bottom: 0.5rem;
-  line-height: 1;
+.title {
+
 }
 
-p {
-  margin: 1rem 0;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
-.btn {
-  @apply shadow-md;
+@font-face {
+  font-family: 'PPMondwest-Regular';
+  src: url('/fonts/PPMondwest-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.btn.btn-ghost {
-  @apply shadow-none;
+@font-face {
+  font-family: 'PPNeueBit-Bold';
+  src: url('/fonts/PPNeueBit-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
 }
