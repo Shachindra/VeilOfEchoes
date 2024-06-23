@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 
   const checkpoints = [
     {
-      message: "Alex arrives back in her eerie hometown, shrouded in mystery. The once-familiar streets feel different, and an unsettling silence hangs in the air.",
+      message: "You arrive back in your eerie hometown, shrouded in mystery. The once-familiar streets feel different, and an unsettling silence hangs in the air.",
       options: ["Explore your childhood home.", "Walk toward the abandoned research facility.", "Visit the local diner for information."],
       correct: 1
     },
