@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 
   const { writeAsync: endGameContract } = useScaffoldWriteContract({
     contractName: "GameContract",
-    functionName: "complete_game",
+    functionName: "end_game",
     args: [address],
     options: { gas: 100000 },
   });
@@ -139,11 +139,11 @@ const Home: NextPage = () => {
 
   const getBackgroundImage = () => {
     if (currentCheckpoint === null) {
-      return "/images/startgame.png";
+      return "/startgame.png";
     } else if (currentCheckpoint >= checkpoints.length) {
-      return "/images/completion.png";
+      return "/completion.png";
     }
-    return `/images/checkpoint${currentCheckpoint + 1}.png`;
+    return `/checkpoint${currentCheckpoint + 1}.png`;
   };
 
   return (
@@ -152,7 +152,6 @@ const Home: NextPage = () => {
         <div className="text-center">
           <h1 className="text-4xl mb-4">Welcome to Veil of Echoes</h1>
           <p className="mb-8 text-xl">Connect your wallet to start your adventure.</p>
-          <CustomConnectButton />
         </div>
       ) : (
         <div className="text-center max-w-3xl bg-black bg-opacity-70 p-6 rounded-lg">
@@ -188,9 +187,16 @@ const Home: NextPage = () => {
                 ))}
               </div>
               {nftData && (
-                <div className="mt-8 p-6 bg-white border-2 border-gray-300 rounded-lg shadow-lg w-full max-w-md">
+                <div className="mt-8 p-6 bg-white border-2 border-gray-300 rounded-lg shadow-lg w-1/2 justify-center mx-auto">
                   <h3 className="text-2xl mb-4 text-green-600">NFT Minted!</h3>
                   <div className="flex flex-col items-center">
+                  <Image
+                      src="/nft_image.png"
+                      alt="NFT Image"
+                      width={300}
+                      height={300}
+                      className="rounded-lg mb-4"
+                    />
                     <div className="bg-gray-200 p-4 rounded-lg mb-4 w-full">
                       <h4 className="text-xl mb-2">Player</h4>
                       <p className="break-words text-black">{nftData.player}</p>
