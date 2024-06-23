@@ -1,19 +1,17 @@
-"use client";
+"use client"
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import type { NextPage } from "next";
 import { useAccount } from "@starknet-react/core";
-import { CustomConnectButton } from "~~/components/scaffold-stark/CustomConnectButton";
 import { FONT } from "../fonts/fonts";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-stark/useScaffoldWriteContract";
 
-const Home: NextPage = () => {
+const Home = () => {
   const { address } = useAccount();
   const [isGameStartLoading, setIsGameStartLoading] = useState<boolean>(false);
   const [currentCheckpoint, setCurrentCheckpoint] = useState<number | null>(null);
-  const [gameMessage, setGameMessage] = useState<string>("");
-  const [gameOptions, setGameOptions] = useState<string[]>([]);
+  const [gameMessage, setGameMessage] = useState("");
+  const [gameOptions, setGameOptions] = useState([]);
   const [nftData, setNftData] = useState<{ player: string } | null>(null);
 
   const { writeAsync: startGameContract } = useScaffoldWriteContract({
@@ -89,7 +87,7 @@ const Home: NextPage = () => {
     }
   }, [address]);
 
-  const onStartGame = async (): Promise<void> => {
+  const onStartGame = async () => {
     if (!address) {
       console.log("Not connected");
       return;
@@ -108,7 +106,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const onChoiceSelect = async (choiceIndex: number) => {
+  const onChoiceSelect = async (choiceIndex) => {
     if (currentCheckpoint === null) return;
     const checkpoint = checkpoints[currentCheckpoint];
     if (choiceIndex === checkpoint.correct) {
@@ -121,7 +119,7 @@ const Home: NextPage = () => {
         try {
           const result = await endGameContract();
           console.log("End game transaction successful:", result);
-          setNftData({ player: address });
+          setNftData({ player: address || "" });
           setGameMessage("Congratulations! You have completed the game, saved the town, and received an NFT.");
           setGameOptions([]);
         } catch (error) {
