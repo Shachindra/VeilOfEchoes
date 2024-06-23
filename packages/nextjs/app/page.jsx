@@ -8,11 +8,11 @@ import { useScaffoldWriteContract } from "~~/hooks/scaffold-stark/useScaffoldWri
 
 const Home = () => {
   const { address } = useAccount();
-  const [isGameStartLoading, setIsGameStartLoading] = useState<boolean>(false);
-  const [currentCheckpoint, setCurrentCheckpoint] = useState<number | null>(null);
+  const [isGameStartLoading, setIsGameStartLoading] = useState(false);
+  const [currentCheckpoint, setCurrentCheckpoint] = useState(null);
   const [gameMessage, setGameMessage] = useState("");
   const [gameOptions, setGameOptions] = useState([]);
-  const [nftData, setNftData] = useState<{ player: string } | null>(null);
+  const [nftData, setNftData] = useState(null);
 
   const { writeAsync: startGameContract } = useScaffoldWriteContract({
     contractName: "GameContract",
