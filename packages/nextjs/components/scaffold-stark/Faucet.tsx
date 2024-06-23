@@ -45,33 +45,33 @@ export const Faucet = () => {
         console.log(providerInfo);
       } catch (error) {
         console.error("⚡️ ~ file: Faucet.tsx:checkChain ~ error", error);
-        notification.error(
-          <>
-            <p className="font-bold mt-0 mb-1">
-              Cannot connect to local provider
-            </p>
-            <p className="m-0">
-              - Did you forget to run{" "}
-              <code className="italic bg-black text-base font-bold">
-                yarn chain
-              </code>{" "}
-              ?
-            </p>
-            <p className="mt-1 break-normal">
-              - Or you can change{" "}
-              <code className="italic bg-black text-base font-bold">
-                targetNetwork
-              </code>{" "}
-              in{" "}
-              <code className="italic bg-black text-base font-bold">
-                scaffold.config.ts
-              </code>
-            </p>
-          </>,
-          {
-            duration: 5000,
-          },
-        );
+        // notification.error(
+        //   <>
+        //     <p className="font-bold mt-0 mb-1">
+        //       Cannot connect to local provider
+        //     </p>
+        //     <p className="m-0">
+        //       - Did you forget to run{" "}
+        //       <code className="italic bg-black text-base font-bold">
+        //         yarn chain
+        //       </code>{" "}
+        //       ?
+        //     </p>
+        //     <p className="mt-1 break-normal">
+        //       - Or you can change{" "}
+        //       <code className="italic bg-black text-base font-bold">
+        //         targetNetwork
+        //       </code>{" "}
+        //       in{" "}
+        //       <code className="italic bg-black text-base font-bold">
+        //         scaffold.config.ts
+        //       </code>
+        //     </p>
+        //   </>,
+        //   {
+        //     duration: 5000,
+        //   },
+        // );
       }
     };
     checkChain().then();

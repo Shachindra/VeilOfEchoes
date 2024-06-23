@@ -4,15 +4,15 @@
  */
 
 const deployedContracts = {
-  devnet: {
-    YourContract: {
+  sepolia: {
+    GameContract: {
       address:
-        "0x0468b1d6dacd624947cb6219ee7bb6523f32002ae3d6df41789dc6d2d28c9c52",
+        "0x03e125780fc4e214f6ba8c54b40bdacd7253a4d5aacb689626220f3beb1c2faa",
       abi: [
         {
           type: "impl",
-          name: "YourContractImpl",
-          interface_name: "contracts::YourContract::IYourContract",
+          name: "GameContractImpl",
+          interface_name: "contracts::GameContract::IGameContract",
         },
         {
           type: "struct",
@@ -33,20 +33,6 @@ const deployedContracts = {
           ],
         },
         {
-          type: "struct",
-          name: "core::integer::u256",
-          members: [
-            {
-              name: "low",
-              type: "core::integer::u128",
-            },
-            {
-              name: "high",
-              type: "core::integer::u128",
-            },
-          ],
-        },
-        {
           type: "enum",
           name: "core::bool",
           variants: [
@@ -62,30 +48,38 @@ const deployedContracts = {
         },
         {
           type: "interface",
-          name: "contracts::YourContract::IYourContract",
+          name: "contracts::GameContract::IGameContract",
           items: [
             {
               type: "function",
-              name: "gretting",
+              name: "start_game",
               inputs: [],
-              outputs: [
-                {
-                  type: "core::byte_array::ByteArray",
-                },
-              ],
-              state_mutability: "view",
+              outputs: [],
+              state_mutability: "external",
             },
             {
               type: "function",
-              name: "set_gretting",
+              name: "continue_game",
               inputs: [
                 {
-                  name: "new_greeting",
-                  type: "core::byte_array::ByteArray",
+                  name: "user_id",
+                  type: "core::starknet::contract_address::ContractAddress",
                 },
                 {
-                  name: "amount_eth",
-                  type: "core::integer::u256",
+                  name: "game_details",
+                  type: "core::byte_array::ByteArray",
+                },
+              ],
+              outputs: [],
+              state_mutability: "external",
+            },
+            {
+              type: "function",
+              name: "end_game",
+              inputs: [
+                {
+                  name: "user_id",
+                  type: "core::starknet::contract_address::ContractAddress",
                 },
               ],
               outputs: [],
@@ -215,26 +209,59 @@ const deployedContracts = {
         },
         {
           type: "event",
-          name: "contracts::YourContract::YourContract::GreetingChanged",
+          name: "contracts::GameContract::GameContract::GameStarted",
           kind: "struct",
           members: [
             {
-              name: "greeting_setter",
+              name: "player",
+              type: "core::starknet::contract_address::ContractAddress",
+              kind: "key",
+            },
+          ],
+        },
+        {
+          type: "event",
+          name: "contracts::GameContract::GameContract::GameContinued",
+          kind: "struct",
+          members: [
+            {
+              name: "player",
               type: "core::starknet::contract_address::ContractAddress",
               kind: "key",
             },
             {
-              name: "new_greeting",
+              name: "game_details",
               type: "core::byte_array::ByteArray",
+              kind: "data",
+            },
+          ],
+        },
+        {
+          type: "struct",
+          name: "core::integer::u256",
+          members: [
+            {
+              name: "low",
+              type: "core::integer::u128",
+            },
+            {
+              name: "high",
+              type: "core::integer::u128",
+            },
+          ],
+        },
+        {
+          type: "event",
+          name: "contracts::GameContract::GameContract::GameEnded",
+          kind: "struct",
+          members: [
+            {
+              name: "player",
+              type: "core::starknet::contract_address::ContractAddress",
               kind: "key",
             },
             {
-              name: "premium",
-              type: "core::bool",
-              kind: "data",
-            },
-            {
-              name: "value",
+              name: "token_id",
               type: "core::integer::u256",
               kind: "data",
             },
@@ -242,7 +269,7 @@ const deployedContracts = {
         },
         {
           type: "event",
-          name: "contracts::YourContract::YourContract::Event",
+          name: "contracts::GameContract::GameContract::Event",
           kind: "enum",
           variants: [
             {
@@ -251,8 +278,18 @@ const deployedContracts = {
               kind: "flat",
             },
             {
-              name: "GreetingChanged",
-              type: "contracts::YourContract::YourContract::GreetingChanged",
+              name: "GameStarted",
+              type: "contracts::GameContract::GameContract::GameStarted",
+              kind: "nested",
+            },
+            {
+              name: "GameContinued",
+              type: "contracts::GameContract::GameContract::GameContinued",
+              kind: "nested",
+            },
+            {
+              name: "GameEnded",
+              type: "contracts::GameContract::GameContract::GameEnded",
               kind: "nested",
             },
           ],
